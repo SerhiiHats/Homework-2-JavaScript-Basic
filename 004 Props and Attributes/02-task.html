@@ -11,9 +11,15 @@
 <body>
 
     <div data-value="10">
-        <p my-attribute="4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur eum neque minus et officia sequi, velit tempora consequatur mollitia ducimus consequuntur error amet reprehenderit id distinctio laborum est architecto repellat!</p>
-        <p data-value="1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, ab. Voluptas temporibus quam quibusdam odio doloribus corrupti assumenda rem rerum, iusto natus animi accusamus dolore. Quas architecto libero cum modi.</p>
-        <p my-attribute="37">Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus officiis natus itaque error saepe, alias harum porro nemo sint? Provident, optio. Aliquid fuga qui assumenda iusto, nihil id obcaecati est?</p>
+        <p my-attribute="4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur eum neque minus et
+            officia sequi, velit tempora consequatur mollitia ducimus consequuntur error amet reprehenderit id
+            distinctio laborum est architecto repellat!</p>
+        <p data-value="1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, ab. Voluptas temporibus quam
+            quibusdam odio doloribus corrupti assumenda rem rerum, iusto natus animi accusamus dolore. Quas architecto
+            libero cum modi.</p>
+        <p my-attribute="37">Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus officiis natus
+            itaque error saepe, alias harum porro nemo sint? Provident, optio. Aliquid fuga qui assumenda iusto, nihil
+            id obcaecati est?</p>
         <a my-attribute="7" href="https://itvdn.com">ITVDN</a>
         <span data-value="9">Hello world</span>
     </div>
@@ -23,6 +29,27 @@
         Задание:
         Посчитайте сумму значений атрибутов data-value и my-attribute всех элементов на текущей странице и отобразите ее пользователю.
         */
+        createParagraphWithViewResult("[my-attribute]");
+        createParagraphWithViewResult("[data-value]");
+
+        function createParagraphWithViewResult(myAtribute) {
+            let paragraph = document.createElement("p");
+            paragraph.style.color = "green";
+            paragraph.style.fontSize = "20px";
+            paragraph.textContent = "сумма значений атрибутов " + myAtribute + " : " + getSumOfCountInMyAtribute(
+                myAtribute);
+            document.querySelector("body").append(paragraph);
+        }
+
+        function getSumOfCountInMyAtribute(myAtribute) {
+            let allElementWithMyAtribute = document.querySelectorAll(myAtribute);
+            let count = 0;
+            let prepareAtribute = myAtribute.substring(1, myAtribute.length - 1);
+            allElementWithMyAtribute.forEach(elem => {
+                count += Number(elem.getAttribute(prepareAtribute));
+            });
+            return count;
+        }
     </script>
 </body>
 
