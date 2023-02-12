@@ -15,10 +15,10 @@
 
 <body>
     Рабочие дни
-    <div></div>
+    <div id="workdays"></div>
 
     Выходные дни
-    <div></div>
+    <div id="weekend"></div>
 
     <script>
        /*
@@ -36,7 +36,24 @@
         { name: "Thursday", isWorkDay: true },
         { name: "Friday", isWorkDay: true },
         { name: "Saturday", isWorkDay: false }];
+
+        console.log(days[0].isWorkDay);
+        console.log(typeof(days[0].isWorkDay))
+        days.forEach(elem =>{
+            if (elem.isWorkDay) {
+                document.querySelector("#workdays").append(createParagraf(elem));
+            } else {
+                document.querySelector("#weekend").append(createParagraf(elem));
+            }
+        });
+        
+        function createParagraf(elem){
+            let itemParagraf = document.createElement("p");
+            itemParagraf.textContent = elem.name;
+            return itemParagraf;
+        }
     </script>
+    
 </body>
 
 </html>
