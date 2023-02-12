@@ -16,7 +16,8 @@
             border: 1px solid black;
         }
 
-        td, th {
+        td,
+        th {
             padding: 8px;
         }
     </style>
@@ -30,8 +31,7 @@
         Свойство amont - значение для второй колонки.
         */
 
-        let source = [
-            {
+        let source = [{
                 month: "Январь",
                 amount: 20
             },
@@ -61,6 +61,21 @@
             }
         ];
 
+        createTableAndTheadTbodyPrependOfElement("body");
+
+        source.forEach(elem => {
+            document.querySelector("tbody").insertAdjacentHTML("beforeend", "<tr><td>" + elem.month +
+                "</td><td>" + elem.amount + "</td></tr>");
+        });
+
+        function createTableAndTheadTbodyPrependOfElement(prependOfElement) {
+            let tableOfMonth = document.createElement("table");
+            document.querySelector(prependOfElement).prepend(tableOfMonth);
+            document.querySelector("table").insertAdjacentHTML("beforeend",
+                "<thead><tr><th>month</th><th>amont</th></tr></thead>");
+            document.querySelector("table").insertAdjacentHTML("beforeend",
+                "<tbody></tbody>");
+        }
     </script>
 </body>
 
