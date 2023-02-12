@@ -61,20 +61,39 @@
             }
         ];
 
-        createTableAndTheadTbodyPrependOfElement("body");
+        createTable("body", source);
+        addTable(source);
 
-        source.forEach(elem => {
-            document.querySelector("tbody").insertAdjacentHTML("beforeend", "<tr><td>" + elem.month +
-                "</td><td>" + elem.amount + "</td></tr>");
-        });
+        function createTable(cssSelector, source) {
+            let entityTable = document.createElement("table");
+            entityTable.className = "castom-table";
+            document.querySelector(cssSelector).prepend(entityTable);
+            document.querySelector(".castom-table").insertAdjacentHTML("beforeend", createHeadOfTable(source));
+            document.querySelector(".castom-table").insertAdjacentHTML("beforeend", "<tbody></tbody>");
 
-        function createTableAndTheadTbodyPrependOfElement(prependOfElement) {
-            let tableOfMonth = document.createElement("table");
-            document.querySelector(prependOfElement).prepend(tableOfMonth);
-            document.querySelector("table").insertAdjacentHTML("beforeend",
-                "<thead><tr><th>month</th><th>amont</th></tr></thead>");
-            document.querySelector("table").insertAdjacentHTML("beforeend",
-                "<tbody></tbody>");
+            function createHeadOfTable(source) {
+                let headOfTable = "<thead><tr>";
+                for (const key in source[0]) {
+                    headOfTable += "<th>" + key + "</th>";
+                }
+                headOfTable += "</tr></thead>";
+                return headOfTable;
+            }
+        }
+
+        function addTable(source) {
+            source.forEach(elem => {
+                document.querySelector(".castom-table tbody").insertAdjacentHTML("beforeend", addRow(elem));
+            });
+
+            function addRow(entity) {
+                let rowOfTable = "<tr>";
+                for (const key in entity) {
+                    rowOfTable += "<td>" + entity[key] + "</td>";
+                }
+                rowOfTable += "</tr>";
+                return rowOfTable;
+            }
         }
     </script>
 </body>
