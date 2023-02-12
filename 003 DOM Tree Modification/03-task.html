@@ -17,7 +17,8 @@
             border: 1px solid black;
         }
 
-        td, th {
+        td,
+        th {
             padding: 8px;
         }
     </style>
@@ -62,6 +63,18 @@
         (В прошлом уроке были рассмотрены примеры, показывающие как получить доступ к родительским элементам, так как 
         удалять нужно не ячейку td, в которой находится значение, а строку tr, в которой расположена эта ячейка).
         */
+        let itemsRow = document.querySelector("#statsTable").rows;
+
+        for (let index = 0; index < itemsRow.length; index++) {
+            if (getNumberFromTable(index) < 100) {
+                itemsRow[index].remove();
+                index--;
+            }
+        }
+
+        function getNumberFromTable(index) {
+            return Number(itemsRow[index].cells[1].textContent);
+        }
     </script>
 </body>
 
