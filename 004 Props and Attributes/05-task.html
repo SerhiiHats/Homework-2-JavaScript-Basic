@@ -29,6 +29,21 @@
             age: "25",
         }
 
+        showEntity(user);
+
+        function showEntity(entity) {
+            let mapOfDiv = new Map();
+            let allElemsForShow = document.querySelectorAll("[data-bind]");
+            allElemsForShow.forEach(elem => {
+                let key = elem.dataset.bind;
+                mapOfDiv.set(key, elem);              
+            });
+            for (const key in entity) {
+                if (mapOfDiv.has(key)) {
+                    mapOfDiv.get(key).textContent = entity[key];
+                }
+            }
+        }
     </script>
 </body>
 
